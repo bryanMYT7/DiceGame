@@ -1,0 +1,106 @@
+/*import de la police font*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+
+body{
+    font-family: 'Lato', sans-serif;
+}
+.Player1{
+    background-color: whitesmoke;
+    height: max-content;
+    height: 50em;
+    display: flex;
+    justify-content: center;
+    
+}
+.Player1 i {
+    font-size: smaller;
+    color: red;
+}
+.Player2 i {
+    font-size: smaller;
+    color: red;
+}
+.Player1 > h1 {
+padding-top: 3em;
+}
+.Player2 > h1 {
+ padding-top: 3em;
+}
+.Player2{
+    height: max-content;
+    height: 50em;
+    display: flex;
+    justify-content: center;
+    
+}
+.DisplayCurrent1{
+background-color: red;
+height:7em;
+width: 7em;
+}
+.DisplayCurrent1 p{
+    color: white;
+    font-size: 2em;
+}
+.DisplayCurrent2{
+background-color: red;
+height:7em;
+width: 7em;
+}
+.DisplayCurrent2 p{
+    color: white;
+    font-size: 2em;
+}
+.DisplayGlobal1 > p {
+    font-size: 6em;
+    color: red;
+}
+.DisplayGlobal2 > p {
+    font-size: 6em;
+    color: red;
+}
+/*Affichage cadran dé*/
+.DisplayResultDice{
+    height: 8em;
+    width: 8em;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 40em;
+    left: 40em;
+    box-shadow: 4px 4px 5px gray;
+}
+/*Buttons*/
+.newgame{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 48em;
+  font-size: 1em;
+}
+.rolldice{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 15em;
+  font-size: 1.1em;
+}
+.hold{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom:  14em;
+    font-size: 1.1em;
+}
+
+.newgame i{
+    color: red;
+  }
+.rolldice i {
+    color: red;
+  }
+.hold i {
+     color: red;
+  }
+  
