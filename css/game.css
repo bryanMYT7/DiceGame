@@ -13,18 +13,26 @@ body{
     
 }
 .Player1 i {
-    font-size: smaller;
+    font-size: 20px;
     color: red;
 }
 .Player2 i {
-    font-size: smaller;
+    font-size: 20px;
     color: red;
 }
 .Player1 > h1 {
-padding-top: 3em;
+padding-top: 2em;
 }
 .Player2 > h1 {
- padding-top: 3em;
+ padding-top: 2em;
+}
+
+/*wrappers*/
+.wrapper1{
+    display: inline-block;
+}
+.wrapper2{
+    display: inline-block;
 }
 .Player2{
     height: max-content;
@@ -76,22 +84,22 @@ width: 7em;
   display: flex;
   justify-content: center;
   position: relative;
-  bottom: 48em;
-  font-size: 1em;
+  bottom: 32em;
+  font-size: 1.5em;
 }
 .rolldice{
   display: flex;
   justify-content: center;
   position: relative;
-  bottom: 15em;
-  font-size: 1.1em;
+  bottom: 11em;
+  font-size: 1.5em;
 }
 .hold{
     display: flex;
     justify-content: center;
     position: relative;
-    bottom:  14em;
-    font-size: 1.1em;
+    bottom:  10em;
+    font-size: 1.5em;
 }
 
 .newgame i{

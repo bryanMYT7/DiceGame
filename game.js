@@ -1,38 +1,35 @@
 
-var nb, aleatory, storeCurrent1='' , storeCurrent2='', nbInteger, activePlayer, news0='', news2='' //Je vais stocker la valeur de mes storecurrent;
+    var nb, aleatory, storeCurrent1='' , storeCurrent2='', nbInteger, activePlayer, news0='', news2='', inGame; //Je vais stocker la valeur de mes storecurrent;
 //Interface joUEURS
-var player1I = document.querySelector('section .Player1');
-var player2I = document.querySelector('section .Player2');
+    var player1I = document.querySelector('section .Player1');
+    var player2I = document.querySelector('section .Player2');
 //Récupération des éléments du DOM
-var DisplayGlobal1  = document.querySelector('.DisplayGlobal1 p')
-var DisplayGlobal2 = document.querySelector('.DisplayGlobal2 p')
+    var DisplayGlobal1  = document.querySelector('.DisplayGlobal1 p')
+    var DisplayGlobal2 = document.querySelector('.DisplayGlobal2 p')
 //score global récup 
-var  displayCurrent1 = document.querySelector('.DisplayCurrent1  p')
-var  displayCurrent2 = document.querySelector('.DisplayCurrent2  p')
-var rolldice = document.querySelector('.rolldice'); 
-var Gamestart = true; 
-var DisplayDice = document.querySelector('.DisplayResultDice');
-//boutons rouges 
-var circle1 = document.querySelector('.Player1 h1 i');
-var circle2 = document.querySelector('.Player2 h1 i');
+    var  displayCurrent1 = document.querySelector('.DisplayCurrent1  p')
+    var  displayCurrent2 = document.querySelector('.DisplayCurrent2  p')
+    var rolldice = document.querySelector('.rolldice'); 
+    var Gamestart = true; 
+    var DisplayDice = document.querySelector('.DisplayResultDice');
+//Voyant ActivePlayer rouges //
+    var circle1 = document.querySelector('.Player1 h1 i');
+    var circle2 = document.querySelector('.Player2 h1 i');
 //bouton hold
 var Holdbtn = document.querySelector('.hold');
 //bouton new game 
 var newgame = document.querySelector('.newgame');
 
-
+  //Choix d'une classe pour définir les propriétés du joueur 
 class Joueur{
-  constructor(id,scoreRound, scoreGlobal, tour, activePlayer){
-  this.id=id;
-  this.scoreRound = scoreRound;
-  this.scoreGlobal = scoreGlobal;
-  this.tour = tour;
-  this.activePlayer = false;
+    constructor(id, tour, activePlayer){
+        this.id=id;
+        this.tour = tour;
+       this.activePlayer = false;
   }
   //Définition des getters 
   getID(id){ return this.id }
-  getScoreRound(scoreRound){this.scoreRound = scoreRound};
-  getScoreGlobal(scoreGlobal){this.scoreGlobal = scoreGlobal};
+  
   //Définition des setters
   ThrowDice(){
   //Lors du click sur rolldice générérer un nombre aléatoire 
@@ -40,12 +37,13 @@ class Joueur{
   console.log(nb)
     nbInteger = parseInt(nb);
     if(aleatory == 1){
-      //global
+      //Stockage de la valeur du Globalscore dans une variable nommée new0 puis parse en Int pour le calcul
       news0 =  parseInt(DisplayGlobal1.innerHTML);
       DisplayGlobal1.innerHTML = nb;
       storeCurrent1 = parseInt(news0 + nbInteger) ;//problème 
       DisplayGlobal1.innerHTML = storeCurrent1;
     } else {
+      //Stockage de la valeur du Globalscore dans une variable nommée new0 puis parse en Int pour le calcul
       news2 =  parseInt(DisplayGlobal2.innerHTML);
       DisplayGlobal2.innerHTML = nb;
       storeCurrent2 = parseInt(news2 + nbInteger) ;//problème
@@ -78,22 +76,33 @@ class Joueur{
   DisplayDice.innerHTML = '';
   DisplayDice.innerHTML = '<img src="./Dices/dice-6 (1).svg">';
   break;
+    }
   }
 }
-
+  //initialisation de la classe Joueur 
+  let player1 = new Joueur(1, 0, 0, 0);
+  let player2 = new Joueur(2, 0, 0, 0);
+    //Débuter la partie en générant un chiffre alétoire 
+    function Startgame(){
+      inGame = true;
+    aleatory = Math.floor(Math.random()*2)+1;
+    if(aleatory == 1){
+    alert('Joueur 1 commencé la partie');
+    circle2.style.display='none';
+    } else if(aleatory == 2){
+    alert('Joueur 2 commencé la partie');
+    circle1.style.display='none';
+    }
+    if(aleatory == 1){
+    rolldice.addEventListener('click', player1.ThrowDice);
+    Holdbtn.addEventListener('click', Hold);
+    }else if (aleatory == 2)  {
+    rolldice.addEventListener('click', player2.ThrowDice);
+    Holdbtn.addEventListener('click', Hold);
+ }
 }
-
-let player1 = new Joueur(1, 0, 0, 0);
-let player2 = new Joueur(2, 0, 0, 0);
-
-//Début de partie 
-
-
-  //Générer des nombres aléatoires par click chacun à sa partie
-
- 
-
-function Hold(){
+    //Stocker le chiffre/nombre généré dans le ROUND score 
+  function Hold(){
     if(aleatory == 1){
       var news =  parseInt(displayCurrent1.innerHTML);
       parseInt(storeCurrent1);
@@ -127,38 +136,8 @@ function Hold(){
       aleatory = 1;
       DisplayGlobal1.innerHTML = 0;
     }
-  
-
 }
-// Générer un nombre alétoire entre 1 et 2 pour débuter le jeu 
-
-
-
-function Startgame(){
-  aleatory = Math.floor(Math.random()*2)+1;
-  
- if(aleatory == 1){
-
- alert('Joueur 1 commencé la partie');
-   circle2.style.display='none';
-
- } else if(aleatory == 2){
-   alert('Joueur 2 commencé la partie');
-   circle1.style.display='none';
-   $("section .Player1").css({"border": "1px solid black"});
- }
- if(aleatory == 1){
-   rolldice.addEventListener('click', player1.ThrowDice);
-   Holdbtn.addEventListener('click', Hold);
-   } else if (aleatory == 2)  {
-     rolldice.addEventListener('click', player2.ThrowDice);
-     Holdbtn.addEventListener('click', Hold);
- }
- 
- //fonction affiche les résultats dans les cases correspondantes
-}
-
-Startgame();
+  Startgame();
 
 Holdbtn.addEventListener('click', Hold);
 newgame.addEventListener('click', function(){
@@ -168,5 +147,5 @@ newgame.addEventListener('click', function(){
   displayCurrent2.innerHTML = 0;
   storeCurrent1 = 0;
   storeCurrent2 = 0;
+  Startgame();
 })
-
